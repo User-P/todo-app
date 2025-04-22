@@ -16,6 +16,8 @@ cd todo-app
   - Crea una base de datos en MySQL llamada `todo_app`.
   - Importa el archivo `database.sql` ubicado en la carpeta `sql` del proyecto.
 
+3. Cambia tu usuario y password en el archivo db.php
+
 4. Inicia el servidor local:
   - Coloca el proyecto en la carpeta raíz de tu servidor local (por ejemplo, `htdocs` en XAMPP).
   - Accede a la aplicación desde tu navegador en `http://localhost/todo-app`.
