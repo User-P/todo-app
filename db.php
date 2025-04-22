@@ -3,8 +3,8 @@
 
 $host = 'localhost';
 $db   = 'todo_app';
-$user = 'root'; 
-$pass = '';   
+$user = 'pedro'; 
+$pass = 'MyStrongPass123!';   
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
