@@ -15,22 +15,39 @@ $tasks = $stmt->fetchAll();
 </head>
 
 <body>
-    <h1>Lista de Tareas</h1>
+    <div class="container">
+        <h1>Lista de Tareas</h1>
 
-    <form id="task-form">
-        <input type="text" name="task_name" id="task_name" placeholder="Nueva tarea" required>
-        <button type="submit">Añadir</button>
-    </form>
+        <form id="task-form">
+            <input
+                type="text"
+                name="task_name"
+                id="task_name"
+                placeholder="Nueva tarea" 
+                required
+                autofocus
+                >
+            <button class="btn success" type="submit">Añadir</button>
+        </form>
 
-    <ul id="task-list">
-        <?php foreach ($tasks as $task): ?>
-            <li>
-                <?= htmlspecialchars($task['task_name']) ?>
-                [<a href="edit.php?id=<?= $task['id'] ?>">Editar</a>]
-                [<a href="#" class="delete-task" data-id="<?= $task['id'] ?>">Eliminar</a>]
-            </li>
-        <?php endforeach; ?>
-    </ul>
+        <section class="task-list">
+            <?php
+            if (empty($tasks)) { ?>
+                <p>No hay tareas disponibles.</p>
+            <?php
+            } ?>
+            <?php
+            foreach ($tasks as $task): ?>
+                <div class="task-item">
+                    <p class="task"><?= htmlspecialchars($task['task_name']) ?></p>
+                    <li class="task-actions">
+                        <a class="btn" href="edit.php?id=<?= $task['id'] ?>">Editar</a>
+                        <a href="#" class="btn delete" data-id="<?= $task['id'] ?>">Eliminar</a>
+                    </li>
+                </div>
+            <?php endforeach; ?>
+        </section>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js"></script>

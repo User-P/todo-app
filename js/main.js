@@ -7,7 +7,7 @@ $(function () {
         });
     });
 
-    $('.delete-task').on('click', function () {
+    $('.delete').on('click', function () {
         if (confirm("¿Estás seguro de eliminar esta tarea?")) {
             const taskId = $(this).data('id');
             $.post('delete.php', { id: taskId }, function () {

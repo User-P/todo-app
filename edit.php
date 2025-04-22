@@ -16,8 +16,29 @@ $stmt->execute([$id]);
 $task = $stmt->fetch();
 ?>
 
-<form method="post">
-  <input type="hidden" name="id" value="<?= $task['id'] ?>">
-  <input type="text" name="task_name" value="<?= htmlspecialchars($task['task_name']) ?>">
-  <button type="submit">Actualizar</button>
-</form>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Editar tarea</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Editar tarea</h1>
+    </header>
+
+    <form id="task-form" method="post">
+      <input type="hidden" name="id" value="<?= $task['id'] ?>">
+      <input type="text" name="task_name" id="task_name" value="<?= htmlspecialchars($task['task_name']) ?>" required>
+      <button class="btn success" type="submit">Actualizar</button>
+    </form>
+
+    <a class="btn" href="index.php">Volver</a>
+  </div>
+</body>
+
+</html>
