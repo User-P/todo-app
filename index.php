@@ -23,26 +23,29 @@ $tasks = $stmt->fetchAll();
                 type="text"
                 name="task_name"
                 id="task_name"
-                placeholder="Nueva tarea" 
+                placeholder="Nueva tarea"
                 required
-                autofocus
-                >
+                autofocus>
             <button class="btn success" type="submit">Añadir</button>
         </form>
 
         <section class="task-list">
-            <?php
-            if (empty($tasks)) { ?>
+            <?php if (empty($tasks)) { ?>
                 <p>No hay tareas disponibles.</p>
-            <?php
-            } ?>
-            <?php
-            foreach ($tasks as $task): ?>
+            <?php } else if(count($tasks) > 1) { ?>
+                <div class="bulk-actions">
+                    <button class="btn" id="delete-selected">Eliminar seleccionadas</button>
+                    <button class="btn" id="delete-all">Eliminar todas</button>
+                </div>
+            <?php } ?>
+
+            <?php foreach ($tasks as $task): ?>
                 <div class="task-item">
-                    <p class="task"><?= htmlspecialchars($task['task_name']) ?></p>
+                    <input type="checkbox" class="task-checkbox" value="<?= $task['id'] ?>">
+                    <p class="task-name"><?= htmlspecialchars($task['task_name']) ?></p>
                     <li class="task-actions">
                         <a class="btn" href="edit.php?id=<?= $task['id'] ?>">Editar</a>
-                        <a href="#" class="btn delete" data-id="<?= $task['id'] ?>">Eliminar</a>
+                        <a href="#" class="btn delete single-delete" data-id="<?= $task['id'] ?>">Eliminar</a>
                     </li>
                 </div>
             <?php endforeach; ?>
@@ -50,6 +53,7 @@ $tasks = $stmt->fetchAll();
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/main.js"></script>
 </body>
 
