@@ -9,11 +9,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $id = $_GET['id'] ?? null;
-if (!$id) die("ID inválido");
+
+if (!filter_var($id, FILTER_VALIDATE_INT)) {
+  die("ID inválido");
+}
 
 $stmt = $pdo->prepare("SELECT * FROM tasks WHERE id = ?");
 $stmt->execute([$id]);
 $task = $stmt->fetch();
+
+if (!$task) {
+  die("Tarea no encontrada");
+}
+
 ?>
 
 <!DOCTYPE html>
